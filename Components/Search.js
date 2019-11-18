@@ -9,7 +9,7 @@ class Search extends React.Component {
   render() {
     return (
       <View style={ styles.main_container }>
-        <TextInput style={ styles.textinput } placeholder='movie title'/>，
+        <TextInput style={ styles.textinput } placeholder='movie title'/>
         <Button title='Search' onPress={() => {}}/>
         <FlatList
           data={films}  //data={[{key: 'a'}, {key: 'b'}]}
