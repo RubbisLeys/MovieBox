@@ -9,8 +9,8 @@ class Search extends React.Component {
   render() {
     return (
       <View style={ styles.main_container }>
-        <TextInput style={{ styles.textinput }} placeholder='movie title'/>
-        <Button style={{ height:50 }} title='Search' onPress={() => {}}/>
+        <TextInput style={ styles.textinput } placeholder='movie title'/>，
+        <Button title='Search' onPress={() => {}}/>
         <FlatList
           data={films}  //data={[{key: 'a'}, {key: 'b'}]}
           KeyExtractor={(item) => item.id.toString()}  // KeyExtractor is a  Props
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   textinput:{
     marginLeft: 5,
-    marginRigt: 5,
+    marginRight: 5,
     height: 50,
     borderColor:'#000000',
     borderWidth:1,
