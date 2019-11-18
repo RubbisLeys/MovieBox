@@ -3,19 +3,19 @@
 import React from 'react'
 import { StyleSheet, View, TextInput, Button, Text, FlatList } from 'react-native'
 import films from '../Helpers/filmsData.js'  //we import movies from filmsData, from Helpers folder
-import FilmItem from './FilmItem'   //we import movie items from FilmsItems.js
+import FilmItem from './FilmItem.js'         //we import movie items from FilmsItems.js
 
 class Search extends React.Component {
   render() {
     return (
-      <View style={{ styles.main_container }}>
+      <View style={ styles.main_container }>
         <TextInput style={{ styles.textinput }} placeholder='movie title'/>
         <Button style={{ height:50 }} title='Search' onPress={() => {}}/>
         <FlatList
           data={films}  //data={[{key: 'a'}, {key: 'b'}]}
           KeyExtractor={(item) => item.id.toString()}  // KeyExtractor is a  Props
+          //--here, we passed the 'film' prop, with the film data, to our component 'FilmItem'
           renderItem={({item}) => <FilmItem film={item}/>} // change {item.key} for {item.title}
-          //----here, we passed the 'film' prop, with the film data, to our component 'FilmItem'
         />
       </View>
     )
