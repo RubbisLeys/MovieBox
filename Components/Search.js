@@ -2,24 +2,49 @@
 
 import React from 'react'
 import { StyleSheet, View, TextInput, Button, Text, FlatList } from 'react-native'
-import films from '../Helpers/filmsData.js'  //we import movies from filmsData, from Helpers folder
+//import films from '../Helpers/filmsData.js'  //we import movies from filmsData, from Helpers folder
 import FilmItem from './FilmItem.js'         //we import movie items from FilmsItems.js
+import { getFilmsFromApiWithSearchedText } from '../API/TMDBApi.js'
 
 class Search extends React.Component {
-  render() {
-    return (
-      <View style={ styles.main_container }>
-        <TextInput style={ styles.textinput } placeholder='movie title'/>
-        <Button title='Search' onPress={() => {}}/>
-        <FlatList
-          data={films}  //data={[{key: 'a'}, {key: 'b'}]}
-          KeyExtractor={(item) => item.id.toString()}  // KeyExtractor is a  Props
-          //--here, we passed the 'film' prop, with the film data, to our component 'FilmItem'
-          renderItem={({item}) => <FilmItem film={item}/>} // change {item.key} for {item.title}
-        />
-      </View>
-    )
+
+  constructor(props) {
+    super(props)
+    this.searchedText = "" // Initialization of our searchedText data out of the state
+    this.state = {
+      films: []
+    }
   }
+
+  _loadFilms() {
+      if (this.searchedText.length > 0) { // Only if the searched text is not empty
+        getFilmsFromApiWithSearchedText(this.searchedText).then(data => {
+            this.setState({ films: data.results })
+        })
+      }
+    }
+
+  _searchTextInputChanged(text) {
+    this.searchedText = text  // Modification of the searched text at each text entry, without going through the setState as before
+  }
+  render() {
+   console.log("RENDER")
+   return (
+     <View style={styles.main_container}>
+       <TextInput
+         style={styles.textinput}
+         placeholder='Movie Title'
+         onChangeText={(text) => this._searchTextInputChanged(text)}
+       />
+       <Button title='search' onPress={() => this._loadFilms()}/>
+       <FlatList
+         data={this.state.films}
+         keyExtractor={(item) => item.id.toString()}
+         renderItem={({item}) => <FilmItem film={item}/>}
+       />
+     </View>
+   )
+ }
 }
 
 const styles = StyleSheet.create({
