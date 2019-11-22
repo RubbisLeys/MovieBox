@@ -7,5 +7,9 @@ export function getFilmsFromApiWithSearchedText (text) {
   //const url = 'https://api.themoviedb.org/3/discover/movie?api_key=' + 2f00d8e62562562c0883370e57011289 +'&language=fr&query=' + text
   return fetch(url)
     .then((response) => response.json())
-    .catch((error) => console.error(error))
+    .catch((error) => console.log(error))
+}
+
+export function getImageFromApi(name) {
+  return 'https://image.tmdb.org/t/p/w300' + name
 }
