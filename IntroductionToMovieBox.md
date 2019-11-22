@@ -184,7 +184,7 @@ You can use [React Native](https://facebook.github.io/react-native/) today in yo
 
 React Native is being used in thousands of apps, but it's likely you've already used it in one of these apps:
 
-![70% center](images/ReactNativeApps.png)
+![40% center](images/ReactNativeApps.png)
 
 -------------------------------------------------------------------------------
 
